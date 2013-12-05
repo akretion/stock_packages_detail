@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <!-- In the form view of Incoming/Outgoing products, make the tree view of move lines editable and set the parameters that are only present in the form view to the fields of the tree view-->
+
+<record id="view_stock_move_tree_editable"  model="ir.ui.view">
+    <field name="name">view_stock_move_tree_editable</field>
+    <field name="model">stock.move</field>
+    <field name="inherit_id" ref="stock.view_move_picking_tree" />
+    <field name="arch" type="xml">
+        <field name="product_qty" position="after">
+            <field name="boxes" />
+            <field name="packs" />
+            <field name="items" />
+            <field name="bags" />
+        </field>
+    </field>
+</record>
+
+<record id="view_move_picking_form"  model="ir.ui.view">
+    <field name="name">view_move_picking_form</field>
+    <field name="model">stock.move</field>
+    <field name="inherit_id" ref="stock.view_move_picking_form" />
+    <field name="arch" type="xml">
+        <field name="product_packaging" position="replace">
+
+<div colspan="4" style="border:1px solid #DDD;padding-left:10px;margin:20px">
+<group>
+<separator string="Boxes"/>
+<div style="margin-top: 15px">
+<field name="boxes" class="oe_inline"/>
+            <field name="product_packaging" class="oe_inline" style="margin-left:30px"/>
+</div>
+</group>
+
+<group>
+<separator string="Packs" />
+<div style="margin-top: 15px">
+            <field name="packs" class="oe_inline"/>
+            <field name="pack_product_packaging" class="oe_inline" style="margin-left:30px"/>
+</div>
+</group>
+
+<group>
+<separator string="Items"/>
+<div style="margin-top: 15px">
+            <field name="items" class="oe_inline"/>
+</div>
+</group>
+
+<group>
+<separator string="Bags"/>
+<div style="margin-top: 15px">
+            <field name="bags" class="oe_inline"/>
+</div>
+</group>
+</div>
+        </field>
+    </field>
+</record>
+
+
+
+</data>
+</openerp>
