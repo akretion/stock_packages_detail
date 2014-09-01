@@ -105,6 +105,18 @@ class StockMove(orm.Model):
         return res
 
 
+class StockPicking(orm.Model):
+    _inherit = "stock.picking"
+
+    def _get_number_of_packages(self, cr, uid, ids, context=None):
+        res = {}
+        for picking in self.browse(cr, uid, ids, context=context):
+            res[picking.id] = 0
+            for move in picking.move_lines:
+                res[picking.id] += move.bags
+        return res
+
+
 class StockPickingOut(orm.Model):
     _inherit = "stock.picking.out"
 
